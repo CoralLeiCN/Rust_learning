@@ -18,5 +18,8 @@ fn main() {
     // ^^^^^^^^^^^^ expected `&str`, found `usize`
 
     let spaces = "   ";
-    let spaces = spaces.len();
+    let _spaces = spaces.len();
+
+    // data types
+    let _guess: u32 = "42".parse().expect("Not a number!");
 }
