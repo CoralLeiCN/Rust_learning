@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
@@ -22,6 +23,13 @@ fn main() {
         width: 30,
         height: 50,
     };
+
+    // println!("rect2 is {}", rect2); // error[E0277]: `Rectangle` doesn't implement `std::fmt::Display`
+    // println!("rect1 is {:?}", rect2); // error[E0277]: `Rectangle` doesn't implement `Debug`
+
+    println!("rect1 is {:?}", rect2); // add #[derive(Debug)]
+    println!("rect1 is {:#?}", rect2); // different print format {:#?}
+
     println!(
         "The area of the rectangle is {} square pixels.",
         area_struct(&rect2)
