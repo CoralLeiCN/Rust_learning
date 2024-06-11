@@ -24,6 +24,15 @@ struct IpAddr {
     address: String,
 }
 
+// enum Option<T> {
+//     None,
+//     Some(T),
+// }
+
+fn print_type_of<T>(_: &T) {
+    println!("{}", std::any::type_name::<T>())
+}
+
 fn main() {
     let home = IpAddress::V4(127, 0, 0, 1);
     let loopback = IpAddress::V6(String::from("::1"));
@@ -40,4 +49,10 @@ fn main() {
 
     let m = Message::Write(String::from("hello"));
     m.call();
+
+    let some_number = Some(5);
+    let some_char = Some('e');
+
+    let absent_number: Option<i32> = None; //need to comment enum Option
+    print_type_of(&absent_number);
 }
