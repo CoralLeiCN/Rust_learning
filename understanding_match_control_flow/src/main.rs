@@ -34,6 +34,13 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
     }
 }
 
+// bugged error[E0004]: non-exhaustive patterns: `None` not covered
+// fn plus_one_bugged(x: Option<i32>) -> Option<i32> {
+//     match x {
+//         Some(i) => Some(i + 1),
+//     }
+// }
+
 fn main() {
     let a_coin = Coin::Penny;
     let result = value_in_cents(a_coin);
