@@ -40,6 +40,10 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 //         Some(i) => Some(i + 1),
 //     }
 // }
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player(num_spaces: u8) {}
+fn reroll() {}
 
 fn main() {
     let a_coin = Coin::Penny;
@@ -57,4 +61,12 @@ fn main() {
     println!("The value of five is: {:?}", five);
     println!("The value of six is: {:?}", six);
     println!("The value of none is: {:?}", none);
+
+    let dice_roll = 9;
+    let a = match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reroll(),
+    };
+    println!("The value of a is: {:?}", a);
 }
