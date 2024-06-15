@@ -66,7 +66,9 @@ fn main() {
     let a = match dice_roll {
         3 => add_fancy_hat(),
         7 => remove_fancy_hat(),
-        _ => reroll(),
+        _ => (),
+        // _ => reroll(),
+        // other => move_player(other),
     };
     println!("The value of a is: {:?}", a);
 }
