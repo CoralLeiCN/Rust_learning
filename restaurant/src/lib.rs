@@ -20,7 +20,16 @@ mod front_of_house {
         pub fn add_to_waitlist() {}
     }
 }
+fn deliver_order() {}
 
+mod back_of_house {
+    fn fix_incorrect_order() {
+        cook_order();
+        super::deliver_order();
+    }
+
+    fn cook_order() {}
+}
 pub fn eat_at_restaurant() {
     // error[E0603]: module `hosting` is private
     // Absolute path
