@@ -92,6 +92,7 @@ fn function4() -> IoResult<()> {
 
 // use crate::front_of_house::hosting;
 pub use crate::front_of_house::hosting;
+use rand::Rng;
 
 pub fn eat_at_restaurant() {
     // error[E0603]: module `hosting` is private
@@ -125,4 +126,6 @@ pub fn eat_at_restaurant() {
     pub fn eat_at_restaurant_pub() {
         hosting::add_to_waitlist();
     }
+
+    let secret_number = rand::thread_rng().gen_range(1..=100);
 }
