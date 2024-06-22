@@ -94,6 +94,14 @@ fn function4() -> IoResult<()> {
 pub use crate::front_of_house::hosting;
 use rand::Rng;
 
+// equvalent
+// use std::io;
+// use std::io::Write;
+
+// use std::io::{self, Write};
+
+use std::collections::*;
+
 pub fn eat_at_restaurant() {
     // error[E0603]: module `hosting` is private
     // Absolute path
