@@ -80,6 +80,18 @@ fn function2() -> io::Result<()> {
     Ok(())
 }
 
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function3() -> Result {
+    // --snip--
+    Ok(())
+}
+fn function4() -> IoResult<()> {
+    // --snip--
+    Ok(())
+}
+
 pub fn eat_at_restaurant() {
     // error[E0603]: module `hosting` is private
     // Absolute path
