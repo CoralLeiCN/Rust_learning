@@ -49,6 +49,37 @@ mod back_of_house {
     }
 }
 
+use crate::front_of_house::hosting;
+
+mod customer {
+
+    // if no use crate here, use if out of scope will have error below
+    // error[E0433]: failed to resolve: use of undeclared crate or module `hosting`
+    use crate::front_of_house::hosting;
+
+    pub fn eat_at_restaurant() {
+        hosting::add_to_waitlist();
+    }
+}
+use std::collections::HashMap;
+
+fn create_map() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}
+
+use std::fmt;
+use std::io;
+
+fn function1() -> fmt::Result {
+    // --snip--
+    Ok(())
+}
+fn function2() -> io::Result<()> {
+    // --snip--
+    Ok(())
+}
+
 pub fn eat_at_restaurant() {
     // error[E0603]: module `hosting` is private
     // Absolute path
@@ -60,6 +91,8 @@ pub fn eat_at_restaurant() {
 
     crate::front_of_house::hosting::add_to_waitlist();
     front_of_house::hosting::add_to_waitlist();
+
+    hosting::add_to_waitlist();
 
     // Order a breakfast in the summer with Rye toast
     let mut meal = back_of_house::Breakfast::summer("Rye");
