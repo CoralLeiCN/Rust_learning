@@ -7,4 +7,6 @@ fn main() {
 
     // the method also works on a literal directly:
     let s = "initial contents".to_string();
+
+    let s = String::from("initial contents");
 }
