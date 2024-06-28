@@ -21,4 +21,8 @@ fn main() {
     let hello = String::from("Olá");
     let hello = String::from("Здравствуйте");
     let hello = String::from("Hola");
+
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    println!("{}", s);
 }
