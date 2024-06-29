@@ -59,4 +59,17 @@ fn main() {
     println!("sss2 is {sss2}");
     println!("sss3 is {sss3}");
     println!("sss is {sss}");
+
+    //error[E0277]: the type `str` cannot be indexed by `{integer}`
+    // let s1 = String::from("hello");
+    // let h = s1[0];
+
+    // error[E0277]: the type `str` cannot be indexed by `{integer}`
+    // let hello = "Здравствуйте";
+    // let answer = &hello[0];
+
+    let hello = "Здравствуйте";
+
+    let s = &hello[0..4];
+    println!("s is {s}");
 }
