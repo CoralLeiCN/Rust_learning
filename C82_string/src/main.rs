@@ -72,4 +72,12 @@ fn main() {
 
     let s = &hello[0..4];
     println!("s is {s}");
+
+    for c in "Зд".chars() {
+        println!("{c}");
+    }
+
+    for c in "Зд".bytes() {
+        println!("{c}");
+    }
 }
