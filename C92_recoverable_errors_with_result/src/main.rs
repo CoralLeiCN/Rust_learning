@@ -31,4 +31,6 @@ fn main() {
             panic!("Problem opening the file: {error:?}");
         }
     });
+
+    let greeting_file = File::open("hello.txt").unwrap();
 }
