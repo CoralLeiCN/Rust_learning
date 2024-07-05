@@ -25,6 +25,14 @@ fn read_username_from_file_qmark() -> Result<String, io::Error> {
     Ok(username)
 }
 
+fn read_username_from_file_qmark2() -> Result<String, io::Error> {
+    let mut username = String::new();
+
+    File::open("hello.txt")?.read_to_string(&mut username)?;
+
+    Ok(username)
+}
+
 fn main() {
     enum Result<T, E> {
         Ok(T),
