@@ -1,5 +1,5 @@
+use std::fs;
 use std::fs::File;
-use std::io::ErrorKind;
 use std::io::{self, Read};
 
 fn read_username_from_file() -> Result<String, io::Error> {
@@ -31,6 +31,10 @@ fn read_username_from_file_qmark2() -> Result<String, io::Error> {
     File::open("hello.txt")?.read_to_string(&mut username)?;
 
     Ok(username)
+}
+
+fn read_username_from_file_shorter() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
 }
 
 fn main() {
