@@ -1,3 +1,4 @@
+use std::error::Error;
 use std::fs;
 use std::fs::File;
 use std::io::{self, Read};
@@ -37,42 +38,52 @@ fn read_username_from_file_shorter() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
 }
 
-fn main() {
-    enum Result<T, E> {
-        Ok(T),
-        Err(E),
-    }
+fn last_char_of_first_line(text: &str) -> Option<char> {
+    text.lines().next()?.chars().last()
+}
 
-    let greeting_file_result = File::open("hello.txt");
+// fn main() {
+//     enum Result<T, E> {
+//         Ok(T),
+//         Err(E),
+//     }
 
-    // let greeting_file = match greeting_file_result {
-    //     Ok(file) => file,
-    //     Err(error) => match error.kind() {
-    //         ErrorKind::NotFound => match File::create("hello.txt") {
-    //             Ok(fc) => fc,
-    //             Err(e) => panic!("Problem creating the file: {e:?}"),
-    //         },
-    //         other_error => {
-    //             panic!("Problem opening the file: {other_error:?}");
-    //         }
-    //     },
-    // };
+//     let greeting_file_result = File::open("hello.txt");
 
-    // let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
-    //     if error.kind() == ErrorKind::NotFound {
-    //         File::create("hello.txt").unwrap_or_else(|error| {
-    //             panic!("Problem creating the file: {error:?}");
-    //         })
-    //     } else {
-    //         panic!("Problem opening the file: {error:?}");
-    //     }
-    // });
+//     // let greeting_file = match greeting_file_result {
+//     //     Ok(file) => file,
+//     //     Err(error) => match error.kind() {
+//     //         ErrorKind::NotFound => match File::create("hello.txt") {
+//     //             Ok(fc) => fc,
+//     //             Err(e) => panic!("Problem creating the file: {e:?}"),
+//     //         },
+//     //         other_error => {
+//     //             panic!("Problem opening the file: {other_error:?}");
+//     //         }
+//     //     },
+//     // };
 
-    // let greeting_file = File::open("hello.txt").unwrap();
+//     // let greeting_file = File::open("hello.txt").unwrap_or_else(|error| {
+//     //     if error.kind() == ErrorKind::NotFound {
+//     //         File::create("hello.txt").unwrap_or_else(|error| {
+//     //             panic!("Problem creating the file: {error:?}");
+//     //         })
+//     //     } else {
+//     //         panic!("Problem opening the file: {error:?}");
+//     //     }
+//     // });
 
-    let greeting_file =
-        File::open("hello.txt").expect("hello.txt should be included in this project");
+//     // let greeting_file = File::open("hello.txt").unwrap();
 
-    //error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
-    // let greeting_file = File::open("hello.txt")?;
+//     let greeting_file =
+//         File::open("hello.txt").expect("hello.txt should be included in this project");
+
+//     //error[E0277]: the `?` operator can only be used in a function that returns `Result` or `Option` (or another type that implements `FromResidual`)
+//     // let greeting_file = File::open("hello.txt")?;
+// }
+
+fn main() -> Result<(), Box<dyn Error>> {
+    let greeting_file = File::open("hello.txt")?;
+
+    Ok(())
 }
