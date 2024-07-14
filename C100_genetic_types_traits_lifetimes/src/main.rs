@@ -92,6 +92,9 @@ fn main() {
     let p = Point { x: 5, y: 4 };
     println!("p.x = {}", p.x());
 
+    // error[E0599]: no method named `distance_from_origin` found for struct `Point<{integer}>` in the current scope
+    // println!("distance_from_origin = {}", p.distance_from_origin());
+
     let p = Point { x: 5.0, y: 4.0 };
     println!("distance_from_origin = {}", p.distance_from_origin());
 }
