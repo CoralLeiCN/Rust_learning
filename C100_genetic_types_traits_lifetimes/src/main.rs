@@ -1,15 +1,39 @@
-fn find_largest_number(number_list: &[i32]) -> &i32 {
-    let mut largest = &number_list[0];
+// fn find_largest_number(number_list: &[i32]) -> &i32 {
+//     let mut largest = &number_list[0];
 
-    for number in number_list {
-        if number > largest {
-            largest = number;
-        }
-    }
-    largest
-}
+//     for number in number_list {
+//         if number > largest {
+//             largest = number;
+//         }
+//     }
+//     largest
+// }
 
-fn find_largest_char(list: &[char]) -> &char {
+// fn find_largest_char(list: &[char]) -> &char {
+//     let mut largest = &list[0];
+
+//     for item in list {
+//         if item > largest {
+//             largest = item;
+//         }
+//     }
+
+//     largest
+// }
+
+// error[E0369]: binary operation `>` cannot be applied to type `&T`
+// fn find_largest_generic<T>(list: &[T]) -> &T {
+//     let mut largest = &list[0];
+
+//     for item in list {
+//         if item > largest {
+//             largest = item;
+//         }
+//     }
+//     largest
+// }
+
+fn find_largest_generic<T>(list: &[T]) -> &T {
     let mut largest = &list[0];
 
     for item in list {
@@ -17,7 +41,6 @@ fn find_largest_char(list: &[char]) -> &char {
             largest = item;
         }
     }
-
     largest
 }
 
