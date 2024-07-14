@@ -49,6 +49,17 @@ struct Point<T> {
     y: T,
 }
 
+impl<T> Point<T> {
+    fn x(&self) -> &T {
+        &self.x
+    }
+}
+
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
 struct Point_multi_generics<T, U> {
     x: T,
     y: U,
@@ -78,5 +89,9 @@ fn main() {
     // error[E0308]: mismatched types
     // let wont_work = Point { x: 5, y: 4.0 };
 
-    let integer_and_float = Point_multi_generics { x: 5, y: 4.0 };
+    let p = Point { x: 5, y: 4 };
+    println!("p.x = {}", p.x());
+
+    let p = Point { x: 5.0, y: 4.0 };
+    println!("distance_from_origin = {}", p.distance_from_origin());
 }
