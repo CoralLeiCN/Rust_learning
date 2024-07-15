@@ -129,6 +129,11 @@ fn main() {
 
     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 
+    // generics version
+    let integer = Some(5);
+    let float = Some(5.0);
+
+    // monomorphized version
     let integer = Option_i32::Some(5);
     let float = Option_f64::Some(5.0);
 }
