@@ -17,6 +17,14 @@ impl Summary for NewsArticle {
     }
 }
 
+pub struct NewsArticle_default {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+impl Summary for NewsArticle_default {}
+
 pub struct Tweet {
     pub username: String,
     pub content: String,
