@@ -2,6 +2,12 @@ pub mod aggregator;
 
 use crate::aggregator::{NewsArticle, NewsArticle_default, Summary, Tweet};
 
+// Traits as Parameters
+// type that implements the Summary trait
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
 fn main() {
     let tweet = Tweet {
         username: String::from("horse_ebooks"),
@@ -23,4 +29,6 @@ fn main() {
     };
 
     println!("New article available! {}", article.summarize());
+
+    notify(&article)
 }
