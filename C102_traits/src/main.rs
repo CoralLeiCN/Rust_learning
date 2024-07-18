@@ -1,12 +1,17 @@
 pub mod aggregator;
-
-use crate::aggregator::{NewsArticle, NewsArticle_default, Summary, Tweet};
+use crate::aggregator::{Desc, NewsArticle, NewsArticle_default, Summary, Tweet};
 
 // Traits as Parameters
 // type that implements the Summary trait
-pub fn notify(item: &impl Summary) {
+pub fn notify(item: &(impl Summary + Desc)) {
     println!("Breaking news! {}", item.summarize());
+    println!("Count: {}", item.count());
 }
+
+// which is equivalent to the following
+// pub fn notify<T: Summary>(item: &T) {
+//     println!("Breaking news! {}", item.summarize());
+// }
 
 fn main() {
     let tweet = Tweet {

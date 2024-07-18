@@ -8,6 +8,10 @@ pub trait Summary {
     }
 }
 
+pub trait Desc {
+    fn count(&self) -> u32;
+}
+
 pub struct NewsArticle {
     pub headline: String,
     pub location: String,
@@ -35,6 +39,13 @@ impl Summary for NewsArticle_default {
         format!("@{}", self.author)
     }
 }
+
+impl Desc for NewsArticle_default {
+    fn count(&self) -> u32 {
+        self.content.split_whitespace().count() as u32
+    }
+}
+
 pub struct Tweet {
     pub username: String,
     pub content: String,
