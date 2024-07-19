@@ -1,5 +1,7 @@
 pub mod aggregator;
 use crate::aggregator::{Desc, NewsArticle, NewsArticle_default, Summary, Tweet};
+use std::fmt::Debug;
+use std::fmt::Display;
 
 // Traits as Parameters
 // type that implements the Summary trait
@@ -12,6 +14,17 @@ pub fn notify(item: &(impl Summary + Desc)) {
 // pub fn notify<T: Summary>(item: &T) {
 //     println!("Breaking news! {}", item.summarize());
 // }
+
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
+    return 1;
+}
+fn some_function1<T, U>(t: &T, u: &U) -> i32
+where
+    T: Display + Clone,
+    U: Clone + Debug,
+{
+    return 1;
+}
 
 fn main() {
     let tweet = Tweet {
