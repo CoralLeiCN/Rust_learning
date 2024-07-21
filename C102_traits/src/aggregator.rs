@@ -93,7 +93,7 @@ fn returns_summarizable() -> impl Summary {
 // }
 
 use std::fmt::Display;
-
+use std::string::ToString;
 struct Pair<T> {
     x: T,
     y: T,
@@ -113,4 +113,15 @@ impl<T: Display + PartialOrd> Pair<T> {
             println!("The largest member is y = {}", self.y);
         }
     }
+}
+
+trait CustomToString {
+    fn custom_to_string(&self) -> String;
+}
+
+impl<T: Display> CustomToString for T {
+    fn custom_to_string(&self) -> String {
+        self.to_string()
+    }
+    // --snip--
 }
