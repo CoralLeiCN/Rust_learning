@@ -48,11 +48,12 @@ fn main() {
         println!("The longest string is {result}");
     }
 
-    let string1 = String::from("long string is long");
-    let result;
-    {
-        let string2 = String::from("xyz");
-        result = longest(string1.as_str(), string2.as_str());
-    }
-    println!("The longest string is {result}");
+    // error[E0597]: `string2` does not live long enough
+    // let string1 = String::from("long string is long");
+    // let result;
+    // {
+    //     let string2 = String::from("xyz");
+    //     result = longest(string1.as_str(), string2.as_str());
+    // }
+    // println!("The longest string is {result}");
 } // ----------+
