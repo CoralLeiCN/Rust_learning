@@ -36,6 +36,10 @@ fn get_first<'a>(x: &'a str, y: &str) -> &'a str {
 //     result.as_str()
 // }
 
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
 fn main() {
     let x = 5; // ----------+-- 'b
                //           |
@@ -66,4 +70,10 @@ fn main() {
     //     result = longest(string1.as_str(), string2.as_str());
     // }
     // println!("The longest string is {result}");
+
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+    let i = ImportantExcerpt {
+        part: first_sentence,
+    };
 } // ----------+
