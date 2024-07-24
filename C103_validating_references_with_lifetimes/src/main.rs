@@ -26,6 +26,16 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     }
 }
 
+fn get_first<'a>(x: &'a str, y: &str) -> &'a str {
+    x
+}
+
+// error[E0515]: cannot return value referencing local variable `result`
+// fn longest_no_related<'a>(x: &str, y: &str) -> &'a str {
+//     let result = String::from("really long string");
+//     result.as_str()
+// }
+
 fn main() {
     let x = 5; // ----------+-- 'b
                //           |
