@@ -40,6 +40,21 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 
+// no longer need to specify lifetimes, because of it is more
+// deterministic pattern
+// fn first_word<'a>(s: &'a str) -> &'a str {
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    &s[..]
+}
+
 fn main() {
     let x = 5; // ----------+-- 'b
                //           |
