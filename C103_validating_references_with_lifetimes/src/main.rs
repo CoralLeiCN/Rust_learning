@@ -40,6 +40,19 @@ struct ImportantExcerpt<'a> {
     part: &'a str,
 }
 
+impl<'a> ImportantExcerpt<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+}
+
+impl<'a> ImportantExcerpt<'a> {
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {announcement}");
+        self.part
+    }
+}
+
 // no longer need to specify lifetimes, because of it is more
 // deterministic pattern
 // fn first_word<'a>(s: &'a str) -> &'a str {
@@ -53,6 +66,20 @@ fn first_word(s: &str) -> &str {
     }
 
     &s[..]
+}
+
+use std::fmt::Display;
+
+fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {ann}");
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
 }
 
 fn main() {
