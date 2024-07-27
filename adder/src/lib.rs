@@ -11,4 +11,14 @@ mod tests {
         let result = add(2, 2);
         assert_eq!(result, 4);
     }
+    #[test]
+    fn exploration() {
+        let result = add(2, 2);
+        assert_eq!(result, 4);
+    }
+
+    #[test]
+    fn another() {
+        panic!("Make this test fail");
+    }
 }
