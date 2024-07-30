@@ -50,6 +50,7 @@ mod tests {
             Err(String::from("two plus two does not equal four"))
         }
     }
+
     #[test]
     #[should_panic(expected = "less than or equal to 100")]
     fn greater_than_100() {
