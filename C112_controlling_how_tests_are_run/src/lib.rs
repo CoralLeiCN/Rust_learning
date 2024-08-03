@@ -5,9 +5,16 @@ fn prints_and_returns_10(a: i32) -> i32 {
 pub fn add_two(a: i32) -> i32 {
     a + 2
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    #[ignore]
+    fn expensive_test() {
+        // code that takes an hour to run
+    }
 
     #[test]
     fn this_test_will_pass() {
