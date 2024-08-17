@@ -3,6 +3,7 @@ use std::fs;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
+    dbg!(&args);
     let config = parse_config(&args);
 
     println!("Searching for {}", config.query);
