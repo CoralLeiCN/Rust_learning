@@ -7,6 +7,7 @@ fn main() {
 
     let config = Config::build(&args).unwrap_or_else(|err: &str| {
         println!("Problem parsing arguments: {err}");
+        // no longer get all the extra output
         process::exit(1);
     });
 
