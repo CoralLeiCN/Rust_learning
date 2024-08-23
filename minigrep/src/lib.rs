@@ -31,6 +31,10 @@ impl Config {
         let query = args[1].clone();
         let file_path = args[2].clone();
         let ignore_case = env::var("IGNORE_CASE").is_ok();
+        let env_var = env::var("IGNORE_CASE");
+        println!("env_var: {:?}", env_var);
+        println!("env_var: {:?}", ignore_case);
+
         Ok(Config {
             query,
             file_path,
