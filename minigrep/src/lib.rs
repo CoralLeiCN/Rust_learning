@@ -1,7 +1,6 @@
-use std::env;
 use std::error::Error;
 use std::fs;
-use std::process;
+
 //dyn keyword is short for “dynamic.”
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
