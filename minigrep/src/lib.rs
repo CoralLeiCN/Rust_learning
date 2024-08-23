@@ -5,6 +5,10 @@ use std::fs;
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
+    let results = search(&config.query, &contents);
+    for line in results {
+        println!("{}", line);
+    }
     Ok(())
 }
 
