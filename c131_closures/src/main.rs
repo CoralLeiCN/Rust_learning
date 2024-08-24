@@ -71,4 +71,31 @@ fn main() {
 
     // let s = example_closure(String::from("hello"));
     let n = example_closure(5);
+
+    //Defining and calling a closure that captures an immutable reference
+    println!("closure that captures a immutable reference");
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+    let only_borrows = || println!("From closure: {list:?}");
+    println!("Before calling closure: {list:?}");
+    only_borrows();
+    println!("After calling closure: {list:?}");
+
+    //Defining and calling a closure that captures a mutable reference
+    println!("closure that captures a mutable reference");
+    let mut list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+    let mut borrows_mutably = || list.push(7);
+    // cannot borrow `list` as immutable because it is also borrowed as mutable
+    // println!("Before calling closure: {list:?}");
+    borrows_mutably();
+    println!("After calling closure: {list:?}");
+
+    //Using move to force the closure for the thread to take ownership of list
+    println!("move to force the thread to take ownership");
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+    thread::spawn(move || println!("From thread: {list:?}"))
+        .join()
+        .unwrap();
 }
