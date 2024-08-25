@@ -31,6 +31,12 @@ impl Inventory {
     }
 }
 
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
 use std::thread;
 use std::time::Duration;
 fn main() {
@@ -100,4 +106,24 @@ fn main() {
         .unwrap();
     //error[E0382]: borrow of moved value: `list`
     // println!("{list:?}");
+
+    {
+        let mut list = [
+            Rectangle {
+                width: 10,
+                height: 1,
+            },
+            Rectangle {
+                width: 3,
+                height: 5,
+            },
+            Rectangle {
+                width: 7,
+                height: 12,
+            },
+        ];
+
+        list.sort_by_key(|r| r.width);
+        println!("{list:#?}");
+    }
 }
