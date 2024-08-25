@@ -123,17 +123,33 @@ fn main() {
             },
         ];
 
-        // let mut sort_operations = vec![];
-        // let value = String::from("closure called");
+        list.sort_by_key(|r| r.width);
+        println!("{list:#?}");
 
         //error[E0507]: cannot move out of `value`, a captured variable in an `FnMut` closure
+        // let mut sort_operations = vec![];
+        // let value = String::from("closure called");
         // list.sort_by_key(|r| {
         //     sort_operations.push(value);
         //     r.width
         // });
         // println!("{list:#?}");
 
-        list.sort_by_key(|r| r.width);
+        let mut sort_operations = vec![];
+        let value = String::from("closure called");
+        // error[E0507]: cannot move out of `value`, a captured variable in an `FnMut` closure
+        list.sort_by_key(|r| {
+            sort_operations.push(value.clone());
+            r.width
+        });
         println!("{list:#?}");
+        println!("{sort_operations:#?}");
+
+        let mut num_sort_operations = 0;
+        list.sort_by_key(|r| {
+            num_sort_operations += 1;
+            r.width
+        });
+        println!("{list:#?}, sorted in {num_sort_operations} operations");
     }
 }
