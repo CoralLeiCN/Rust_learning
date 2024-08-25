@@ -123,6 +123,16 @@ fn main() {
             },
         ];
 
+        // let mut sort_operations = vec![];
+        // let value = String::from("closure called");
+
+        //error[E0507]: cannot move out of `value`, a captured variable in an `FnMut` closure
+        // list.sort_by_key(|r| {
+        //     sort_operations.push(value);
+        //     r.width
+        // });
+        // println!("{list:#?}");
+
         list.sort_by_key(|r| r.width);
         println!("{list:#?}");
     }
