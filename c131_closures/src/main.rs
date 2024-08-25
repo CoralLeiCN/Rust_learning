@@ -98,4 +98,6 @@ fn main() {
     thread::spawn(move || println!("From thread: {list:?}"))
         .join()
         .unwrap();
+    //error[E0382]: borrow of moved value: `list`
+    // println!("{list:?}");
 }
