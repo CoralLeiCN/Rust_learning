@@ -1,3 +1,8 @@
+use example::artistic_concepts::kinds::PrimaryColor;
+use example::artistic_concepts::utils::mix;
+
 fn main() {
-    println!("Hello, world!");
+    let red = PrimaryColor::Red;
+    let yellow = PrimaryColor::Yellow;
+    mix(red, yellow);
 }

@@ -1,4 +1,4 @@
-//! //! # Art
+//! # artistic_concepts
 //!
 //! A library for modeling artistic concepts.
 
@@ -19,7 +19,7 @@ pub mod kinds {
 }
 
 pub mod utils {
-    use crate::kinds::*;
+    use crate::artistic_concepts::kinds::*;
 
     /// Combines two primary colors in equal amounts to create
     /// a secondary color.

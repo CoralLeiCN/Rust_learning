@@ -17,3 +17,6 @@
 pub fn add_one(x: i32) -> i32 {
     x + 1
 }
+// mod artistic_concepts;
+
+pub mod artistic_concepts;
