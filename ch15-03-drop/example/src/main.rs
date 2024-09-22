@@ -18,11 +18,19 @@ fn main() {
     println!("CustomSmartPointers created.");
 
     {
-        let c = CustomSmartPointer {
-            data: String::from("some data"),
+        let e = CustomSmartPointer {
+            data: String::from("some data e"),
         };
-        println!("CustomSmartPointer created.");
-        drop(c);
-        println!("CustomSmartPointer dropped before the end of main.");
+        println!("CustomSmartPointer created. e");
+        drop(e);
+        println!("CustomSmartPointer dropped before the end of main. e");
     }
+    {
+        let f = CustomSmartPointer {
+            data: String::from("other stuff f"),
+        };
+        println!("CustomSmartPointers created. f");
+    }
+    // f will drop before the end of main, because f goes out of scope.
+    println!("c {}", c.data);
 }
