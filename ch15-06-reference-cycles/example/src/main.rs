@@ -1,6 +1,6 @@
 use crate::List::{Cons, Nil};
 use std::cell::RefCell;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
 enum List {
@@ -21,6 +21,13 @@ impl List {
 struct Node {
     value: i32,
     children: RefCell<Vec<Rc<Node>>>,
+}
+
+#[derive(Debug)]
+struct Node_parent {
+    value: i32,
+    parent: RefCell<Weak<Node_parent>>,
+    children: RefCell<Vec<Rc<Node_parent>>>,
 }
 
 fn main() {
@@ -56,5 +63,25 @@ fn main() {
             value: 5,
             children: RefCell::new(vec![Rc::clone(&leaf)]),
         });
+    }
+
+    {
+        let leaf = Rc::new(Node_parent {
+            value: 3,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![]),
+        });
+
+        println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+
+        let branch = Rc::new(Node_parent {
+            value: 5,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![Rc::clone(&leaf)]),
+        });
+
+        *leaf.parent.borrow_mut() = Rc::downgrade(&branch);
+
+        println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
     }
 }
