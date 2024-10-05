@@ -1,3 +1,5 @@
+use std::cell::RefCell;
+
 pub trait Messenger {
     fn send(&self, msg: &str);
 }
@@ -40,7 +42,6 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::cell::RefCell;
 
     struct MockMessenger {
         sent_messages: RefCell<Vec<String>>,
@@ -60,6 +61,28 @@ mod tests {
         }
     }
 
+    struct BorrowMutErrorMessagers {
+        sent_messages: RefCell<Vec<String>>,
+    }
+
+    impl BorrowMutErrorMessagers {
+        fn new() -> BorrowMutErrorMessagers {
+            BorrowMutErrorMessagers {
+                sent_messages: RefCell::new(vec![]),
+            }
+        }
+    }
+
+    impl Messenger for BorrowMutErrorMessagers {
+        fn send(&self, message: &str) {
+            let mut one_borrow = self.sent_messages.borrow_mut();
+            let mut two_borrow = self.sent_messages.borrow_mut();
+
+            one_borrow.push(String::from(message));
+            two_borrow.push(String::from(message));
+        }
+    }
+
     #[test]
     fn it_sends_an_over_75_percent_warning_message() {
         // --snip--
@@ -70,4 +93,17 @@ mod tests {
 
         assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
+
+    // #[test]
+    // thread 'tests::two_mutable_references' panicked at src/lib.rs:79:53
+    // already borrowed: BorrowMutError
+    //     fn two_mutable_references() {
+    //         // --snip--
+    //         let mock_messenger = BorrowMutErrorMessagers::new();
+    //         let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+
+    //         limit_tracker.set_value(80);
+
+    //         // assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
+    //     }
 }
