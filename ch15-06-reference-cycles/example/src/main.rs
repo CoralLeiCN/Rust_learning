@@ -44,15 +44,16 @@ fn main() {
         println!("b next item = {:?}", b.tail());
 
         if let Some(link) = a.tail() {
+            println!("link is {:?}", link);
             *link.borrow_mut() = Rc::clone(&b);
         }
 
         println!("b rc count after changing a = {}", Rc::strong_count(&b));
         println!("a rc count after changing a = {}", Rc::strong_count(&a));
+        // Uncomment the next line to see that we have a cycle;
+        // it will overflow the stack
+        // println!("a next item = {:?}", a.tail());
     }
-    // Uncomment the next line to see that we have a cycle;
-    // it will overflow the stack
-    // println!("a next item = {:?}", a.tail());
 
     {
         let leaf = Rc::new(Node {
