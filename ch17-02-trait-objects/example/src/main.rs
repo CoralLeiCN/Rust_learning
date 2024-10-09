@@ -1,5 +1,6 @@
 mod gui;
 use gui::Draw;
+use gui::{Button, Screen};
 
 struct SelectBox {
     width: u32,
@@ -12,7 +13,6 @@ impl Draw for SelectBox {
         // code to actually draw a select box
     }
 }
-use gui::{Button, Screen};
 
 fn main() {
     let screen = Screen {
