@@ -4,7 +4,6 @@ pub struct Post {
 }
 
 impl Post {
-    // --snip--
     pub fn new() -> Post {
         Post {
             state: Some(Box::new(Draft {})),
@@ -17,7 +16,7 @@ impl Post {
     }
 
     pub fn content(&self) -> &str {
-        ""
+        self.state.as_ref().unwrap().content(self)
     }
 
     pub fn request_review(&mut self) {
@@ -34,14 +33,20 @@ impl Post {
 }
 
 trait State {
+    // --snip--
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
+
+    fn content<'a>(&self, post: &'a Post) -> &'a str {
+        ""
+    }
 }
+
+// --snip--
 
 struct Draft {}
 
 impl State for Draft {
-    // --snip--
     fn request_review(self: Box<Self>) -> Box<dyn State> {
         Box::new(PendingReview {})
     }
@@ -54,7 +59,6 @@ impl State for Draft {
 struct PendingReview {}
 
 impl State for PendingReview {
-    // --snip--
     fn request_review(self: Box<Self>) -> Box<dyn State> {
         self
     }
@@ -67,11 +71,16 @@ impl State for PendingReview {
 struct Published {}
 
 impl State for Published {
+    // --snip--
     fn request_review(self: Box<Self>) -> Box<dyn State> {
         self
     }
 
     fn approve(self: Box<Self>) -> Box<dyn State> {
         self
+    }
+
+    fn content<'a>(&self, post: &'a Post) -> &'a str {
+        &post.content
     }
 }
