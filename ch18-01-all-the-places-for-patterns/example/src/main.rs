@@ -16,4 +16,11 @@ fn main() {
     } else {
         println!("Using blue as the background color");
     }
+
+    let v = vec!['a', 'b', 'c'];
+
+    for (index, value) in v.iter().enumerate() {
+        println!("{value} is at index {index}");
+    }
+    let (x, y, z) = (1, 2, 3);
 }
