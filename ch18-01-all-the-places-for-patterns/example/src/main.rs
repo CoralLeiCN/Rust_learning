@@ -1,3 +1,10 @@
+fn foo(x: i32) {
+    // code goes here
+}
+fn print_coordinates(&(x, y): &(i32, i32)) {
+    println!("Current location: ({x}, {y})");
+}
+
 fn main() {
     let favorite_color: Option<&str> = None;
     let is_tuesday = false;
@@ -24,7 +31,8 @@ fn main() {
     }
     let (x, y, z) = (1, 2, 3);
 
-    fn foo(x: i32) {
-        // code goes here
+    {
+        let point = (3, 5);
+        print_coordinates(&point);
     }
 }
