@@ -23,4 +23,8 @@ fn main() {
         println!("{value} is at index {index}");
     }
     let (x, y, z) = (1, 2, 3);
+
+    fn foo(x: i32) {
+        // code goes here
+    }
 }
