@@ -136,6 +136,22 @@ fn main() {
 
     let _x = 5;
     let y = 10;
+
+    // error[E0382]: borrow of partially moved value: `s`
+    // let s = Some(String::from("Hello!"));
+
+    // if let Some(_s) = s {
+    //     println!("found a string");
+    // }
+
+    // println!("{s:?}");
+    let s = Some(String::from("Hello!"));
+
+    if let Some(_) = s {
+        println!("found a string");
+    }
+
+    println!("{s:?}");
 }
 
 fn foo(_: i32, y: i32) {
