@@ -22,6 +22,12 @@ enum Color {
     Hsv(i32, i32, i32),
 }
 
+struct Point1 {
+    x: i32,
+    y: i32,
+    z: i32,
+}
+
 fn main() {
     let x = Some(5);
     let y = 10;
@@ -152,6 +158,12 @@ fn main() {
     }
 
     println!("{s:?}");
+
+    let origin = Point1 { x: 0, y: 0, z: 0 };
+
+    match origin {
+        Point { x, .. } => println!("x is {x}"),
+    }
 }
 
 fn foo(_: i32, y: i32) {
