@@ -28,6 +28,10 @@ struct Point1 {
     z: i32,
 }
 
+enum Message2 {
+    Hello { id: i32 },
+}
+
 fn main() {
     let x = Some(5);
     let y = 10;
@@ -190,6 +194,18 @@ fn main() {
     match x {
         4 | 5 | 6 if y => println!("yes"),
         _ => println!("no"),
+    }
+
+    let msg = Message2::Hello { id: 5 };
+
+    match msg {
+        Message2::Hello {
+            id: id_variable @ 3..=7,
+        } => println!("Found an id in range {id_variable}"),
+        Message2::Hello { id: 10..=12 } => {
+            println!("Found an id in another range")
+        }
+        Message2::Hello { id } => println!("Found some other id: {id}"),
     }
 }
 
