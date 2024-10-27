@@ -198,6 +198,17 @@ fn main() {
 
     let msg = Message2::Hello { id: 5 };
 
+    use std::fmt;
+
+    impl fmt::Display for Message2 {
+        fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            match self {
+                Message2::Hello { id } => write!(f, "Hello with id: {}", id),
+                // handle other variants
+            }
+        }
+    }
+    println!("message is {msg}");
     match msg {
         Message2::Hello {
             id: id_variable @ 3..=7,
